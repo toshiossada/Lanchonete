@@ -51,7 +51,7 @@ namespace Dextra.Lanchonete.Api {
                     c.SwaggerDoc ("v1", new Info {
                         Title = "UsuarioWebAPI",
                             Version = "v1",
-                            Description = "API usando DotNet Core + EntityFramework Core e JWT",
+                            Description = "API para Lanchonete",
                             TermsOfService = "None",
                             Contact = new Contact { Name = "Toshi Ossada", Email = "toshiossada@gmail.com", Url = "https://github.com/toshiossada" },
                             License = new License { Name = "GNU", Url = "https://www.gnu.org/licenses/licenses.pt-br.html" }
