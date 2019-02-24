@@ -7,5 +7,8 @@ Documentação Swagger do metodos da API disponiveis em https://localhost:5001/s
 Para executar o projeto, siga os seguintes passos:
 
 Com o dotnet CLI instalado vá ate o diretorio do projeto Dextra.Lanchonete.Api e execute dotnet restore, para restaurar os pacotes nugets e em seguida execute o dotnet run para startar a API (na porta 5001)
+Editar o arquivo de configuração em 'API\Dextra.Lanchonete.Api\appsettings.json' e adicionar sua ConnectionString na tag DefaultConnection.
+Após isso atualizar o banco de dados executando o comando
+  dotnet ef database update
 
-Os testes unitarios foram feitos utilizando o XUnit e a biblioteca Moq para conseguir Mocar os resultados
+Os testes unitarios foram feitos utilizando o XUnit e a biblioteca Moq para conseguir Mocar os resultados, para executar os testes execute o comando no dotnet Cli: 'dotnet test'
