@@ -1,4 +1,3 @@
-Dextra Challenge
 Repositório com o projeto do ambiente para o desafio Dextra.
 
 Projeto desenvolvido com .NET Core 2.1 e Enityframework core 2.1 utilizando os padroes de Injeção de Depedencias(Para desacoplar as camadas e também permitir executar Mocks nos testes unitarios) e Repository
