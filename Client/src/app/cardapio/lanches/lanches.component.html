@@ -13,7 +13,6 @@
             <td><input type="radio" (change)="selecionarLanche(lanche)" name="lanches"></td>
             <td>{{lanche.descricao}}</td>
             <td>
-                <!-- {{lanche.lancheIngredientes.map(e => e.ingrediente.descricao).join(",")}} -->
                 <label>{{getDescricao(lanche)}} - R${{getPrice(lanche).toFixed(2)}}</label>
             </td>
           </tr>
