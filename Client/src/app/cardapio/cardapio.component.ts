@@ -13,25 +13,34 @@ export class CardapioComponent implements OnInit {
   public valor = 0;
   lancheSelecionado: any = {};
   ingredientesSelecionados: any = [];
-  public pedidoLanche: PedidoLanche;
   constructor(private service: AppHttpService) { }
 
   ngOnInit() {
 
   }
 
-  changeLancheSelecionado(lanche: any){
+  changeLancheSelecionado(lanche: any) {
     this.lancheSelecionado = lanche;
   }
-  changeIngredienteSelecionado(ingrediente: any){
+  changeIngredienteSelecionado(ingrediente: any) {
     this.ingredientesSelecionados = ingrediente;
   }
 
   save() {
-    this.pedidoLanche = new PedidoLanche();
-    this.pedidoLanche.idLanche = this.lancheSelecionado.id;
-    this.pedidoLanche.lanche = this.lancheSelecionado;
-    this.pedidoLanche.ingredientesAdicionais = new Array<IngredientesAdicional>();
+    this.service
+      .build('PedidoLanche')
+      .create(this.montaRequest())
+      .subscribe((data) => {
+        this.valor = data['valorFinal'];
+        alert('Inserido com sucesso');
+      });
+  }
+
+  montaRequest() {
+    const pedidoLanche = new PedidoLanche();
+    pedidoLanche.idLanche = this.lancheSelecionado.id;
+    pedidoLanche.lanche = this.lancheSelecionado;
+    pedidoLanche.ingredientesAdicionais = new Array<IngredientesAdicional>();
 
 
     for (const item of this.ingredientesSelecionados) {
@@ -39,18 +48,10 @@ export class CardapioComponent implements OnInit {
       ingredienteAdicional.ingredienteId = item.id;
       ingredienteAdicional.ingrediente = item;
       ingredienteAdicional.quantidade = item.quantidade;
-      this.pedidoLanche.ingredientesAdicionais.push(ingredienteAdicional);
+      pedidoLanche.ingredientesAdicionais.push(ingredienteAdicional);
     }
 
-    
-
-    this.service
-      .build('PedidoLanche')
-      .create(this.pedidoLanche)
-      .subscribe((data) => {
-        this.valor = data['valorFinal'];
-        alert('Inserido com sucesso');
-      });
+    return pedidoLanche;
   }
 
 }
