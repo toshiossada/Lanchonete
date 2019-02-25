@@ -24,7 +24,6 @@ export class CardapioComponent implements OnInit {
     this.lancheSelecionado = lanche;
   }
   changeIngredienteSelecionado(ingrediente: any){
-    debugger;
     this.ingredientesSelecionados = ingrediente;
   }
 
