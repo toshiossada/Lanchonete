@@ -32,7 +32,7 @@ export class CardapioComponent implements OnInit {
     for (const item of this.ingredientesSelecionados) {
       this.ingredienteAdicional.ingredienteId = 0;
       this.ingredienteAdicional.ingrediente = item;
-      this.ingredienteAdicional.quantidade = 0;
+      this.ingredienteAdicional.quantidade = item.quantidade;
       this.pedidoLanche.ingredientesAdicionais.push(this.ingredienteAdicional);
     }
 

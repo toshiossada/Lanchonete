@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CardapioComponent } from './cardapio.component';
 import { IngredientesComponent } from './ingredientes/ingredientes.component';
 import { LanchesComponent } from './lanches/lanches.component';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'cardapio', component: CardapioComponent },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(appRoutes),
+    FormsModule,
   ]
 })
 export class CardapioModule { }

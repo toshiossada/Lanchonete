@@ -18,6 +18,9 @@ namespace Dextra.Lanchonete.Api.Models {
         [Required]
         public double Valor { get; set; }
 
+        [NotMapped]
+        public int Quantidade { get; set; }
+
         public virtual ICollection<IngredienteAdicional> IngredienteAdicional { get; set; }
         public virtual ICollection<PedidoLanche> PedidoLanche { get; set; }
     }
