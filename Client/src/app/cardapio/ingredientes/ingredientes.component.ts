@@ -9,12 +9,13 @@ import { AppHttpService } from '../../app-http.service';
 })
 export class IngredientesComponent implements OnInit {
   public ingredientes: any = [];
+  // tslint:disable-next-line:no-input-rename
   @Input("ingredientesSelecionados") ingredientesSelecionados: any = [];
 
   constructor(private service: AppHttpService) { }
 
   ngOnInit() {
-    this.service.build('Ingredientes')
+    this.service.build('Ingredientes') 
       .list()
       .subscribe((data) => {
         this.updateData(data);

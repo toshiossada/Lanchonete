@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using Dextra.Lanchonete.Api.Models;
 using Dextra.Lanchonete.Api.Business;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 namespace Dextra.Lanchonete.Api.Controllers {
+    [EnableCors("CorsPolicy")]
     [Route ("api/v1/[Controller]")]
     public class PedidoLancheController : Controller {
         private readonly IPedidoLancheBll _pedidoLancheBll;
@@ -36,7 +38,6 @@ namespace Dextra.Lanchonete.Api.Controllers {
         {
             if(pedidoLanche == null) return BadRequest();
             pedidoLanche.ValorFinal = _pedidoLancheBll.CalcularPrecoLanche(pedidoLanche);
-
 
 
             _pedidoLancheBll.Add(pedidoLanche);

@@ -21,16 +21,19 @@ export class CardapioComponent implements OnInit {
 
   }
 
+  changeLancheSelecionado(lanche: any){
+    this.lancheSelecionado = lanche;
+  }
+
   save() {
     this.pedidoLanche = new PedidoLanche();
-    this.pedidoLanche.id = this.lancheSelecionado.id;
     this.pedidoLanche.idLanche = this.lancheSelecionado.id;
     this.pedidoLanche.lanche = this.lancheSelecionado
     this.pedidoLanche.ingredientesAdicionais = new Array<IngredientesAdicional>();
 
 
     for (const item of this.ingredientesSelecionados) {
-      this.ingredienteAdicional.ingredienteId = 0;
+      this.ingredienteAdicional.ingredienteId = item.id;
       this.ingredienteAdicional.ingrediente = item;
       this.ingredienteAdicional.quantidade = item.quantidade;
       this.pedidoLanche.ingredientesAdicionais.push(this.ingredienteAdicional);

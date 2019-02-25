@@ -31,8 +31,13 @@ namespace Dextra.Lanchonete.Api {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
             services.AddCors ();
             services.AddCors (options => {
-                options.AddPolicy ("AllowMyOrigin",
-                    builder => builder.WithOrigins ("*"));
+                options.AddPolicy ("CorsPolicy",
+                    builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials()
+                );
             });
 
             services.AddDbContext<MyAppContext> (options =>
@@ -80,7 +85,7 @@ namespace Dextra.Lanchonete.Api {
 
             app.UseHttpsRedirection ();
 
-            app.UseCors ("AllowMyOrigin");
+            app.UseCors ("CorsPolicy");
             //Definindo Endpoint Swagger
             app.UseSwagger ();
             app.UseSwaggerUI (

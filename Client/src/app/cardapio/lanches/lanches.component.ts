@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppHttpService } from '../../app-http.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class LanchesComponent implements OnInit {
   public lanches: any = [];
   // tslint:disable-next-line:no-input-rename
   @Input('lancheSelecionado') lancheSelecionado: any = {};
+  @Output() lancheSelecionadoE = new EventEmitter<any>();
+
   constructor(private service: AppHttpService) { }
 
   ngOnInit() {
@@ -22,6 +24,7 @@ export class LanchesComponent implements OnInit {
 
   public selecionarLanche(lanche) {
     this.lancheSelecionado = lanche;
+    this.lancheSelecionadoE.emit(this.lancheSelecionado);
   }
 
   updateData(lanches) {

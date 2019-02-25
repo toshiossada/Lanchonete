@@ -49,7 +49,7 @@ namespace Dextra.Lanchonete.Api.Business {
             }
 
             foreach (var item in pedidoLanche.IngredientesAdicionais) {
-                valorFinal += item.Ingrediente.Valor;
+                valorFinal += item.Ingrediente.Valor * item.Quantidade;
             }
 
             //Aplica Promoção Light caso satisfaça as regras da promoção

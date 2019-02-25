@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Dextra.Lanchonete.Api.Models {
     [Table ("Ingredientes")]
     public class Ingrediente {
+
         [Key]
         [Required]
         public int Id { get; set; }
