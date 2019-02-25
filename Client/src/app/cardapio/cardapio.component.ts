@@ -14,7 +14,6 @@ export class CardapioComponent implements OnInit {
   lancheSelecionado: any = {};
   ingredientesSelecionados: any = [];
   public pedidoLanche: PedidoLanche;
-  ingredienteAdicional = new IngredientesAdicional();
   constructor(private service: AppHttpService) { }
 
   ngOnInit() {
@@ -24,22 +23,27 @@ export class CardapioComponent implements OnInit {
   changeLancheSelecionado(lanche: any){
     this.lancheSelecionado = lanche;
   }
+  changeIngredienteSelecionado(ingrediente: any){
+    debugger;
+    this.ingredientesSelecionados = ingrediente;
+  }
 
   save() {
     this.pedidoLanche = new PedidoLanche();
     this.pedidoLanche.idLanche = this.lancheSelecionado.id;
-    this.pedidoLanche.lanche = this.lancheSelecionado
+    this.pedidoLanche.lanche = this.lancheSelecionado;
     this.pedidoLanche.ingredientesAdicionais = new Array<IngredientesAdicional>();
 
 
     for (const item of this.ingredientesSelecionados) {
-      this.ingredienteAdicional.ingredienteId = item.id;
-      this.ingredienteAdicional.ingrediente = item;
-      this.ingredienteAdicional.quantidade = item.quantidade;
-      this.pedidoLanche.ingredientesAdicionais.push(this.ingredienteAdicional);
+      const ingredienteAdicional = new IngredientesAdicional()
+      ingredienteAdicional.ingredienteId = item.id;
+      ingredienteAdicional.ingrediente = item;
+      ingredienteAdicional.quantidade = item.quantidade;
+      this.pedidoLanche.ingredientesAdicionais.push(ingredienteAdicional);
     }
 
-
+    
 
     this.service
       .build('PedidoLanche')

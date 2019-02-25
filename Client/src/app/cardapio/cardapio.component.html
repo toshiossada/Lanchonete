@@ -1,6 +1,6 @@
 <form (submit)="save()">
   <app-lanches (lancheSelecionadoE)="changeLancheSelecionado($event)"></app-lanches>
-  <app-ingredientes [ingredientesSelecionados]="ingredientesSelecionados"></app-ingredientes><br>
+  <app-ingredientes (ingredientesSelecionadosE)="changeIngredienteSelecionado($event)"></app-ingredientes><br>
   <label><strong>Total: </strong>R${{valor.toFixed(2)}}</label><br>
   <input type="submit" value="Salvar" class="btn btn-primary">
 </form>

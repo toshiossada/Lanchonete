@@ -9,7 +9,7 @@ import { AppHttpService } from '../../app-http.service';
 export class LanchesComponent implements OnInit {
   public lanches: any = [];
   // tslint:disable-next-line:no-input-rename
-  @Input('lancheSelecionado') lancheSelecionado: any = {};
+  lancheSelecionado: any = {};
   @Output() lancheSelecionadoE = new EventEmitter<any>();
 
   constructor(private service: AppHttpService) { }
