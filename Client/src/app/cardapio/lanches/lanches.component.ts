@@ -27,6 +27,14 @@ export class LanchesComponent implements OnInit {
     this.lancheSelecionadoE.emit(this.lancheSelecionado);
   }
 
+  getDescricao(lanche){
+    debugger;
+    return lanche.lancheIngredientes.map(e => e.ingrediente.descricao).join(', ');
+  }
+  getPrice(lanche) {
+    return lanche.lancheIngredientes.map(e => e.ingrediente.valor).reduce((a, b) => a + b);
+  }
+
   updateData(lanches) {
     this.lanches = lanches;
   }

@@ -13,8 +13,8 @@
             <td><input type="radio" (change)="selecionarLanche(lanche)" name="lanches"></td>
             <td>{{lanche.descricao}}</td>
             <td>
-              <label *ngFor="let ingrediente of lanche.lancheIngredientes">{{ingrediente.ingrediente.descricao}}                
-              </label>
+                <!-- {{lanche.lancheIngredientes.map(e => e.ingrediente.descricao).join(",")}} -->
+                <label>{{getDescricao(lanche)}} - R${{getPrice(lanche).toFixed(2)}}</label>
             </td>
           </tr>
         </tbody>
