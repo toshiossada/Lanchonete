@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Ingredientes</h5>
+    <table class="table table-hover table-bordered">
+      <caption>Lista de Ingredientes</caption>
+      <thead class="thead-dark">
+        <th>#</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ingrediente of ingredientes">
+          <td><input type="checkbox"  (change)="checkboxHandle($event, ingrediente)"></td>
+          <td>{{ingrediente.descricao}}</td>
+          <td>{{ingrediente.valor}}</td>
+          <td><input type="text" class="form-control" placeholde="Quantidade"></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+</div>

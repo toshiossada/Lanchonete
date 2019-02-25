@@ -1,0 +1,25 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <span class="nav-brand h1">
+      {{title}}
+    </span>
+  </nav>
+
+
+</header>
+<main class="container-fluid" id="content">
+  <div class="row">
+    <section id="nav" class="col-2 bg-dark">
+      <p class="display-6 text-light">
+        <small>
+            Menu
+        </small>
+      </p>
+      <p><a [routerLink]="['/cardapio']"  class="btn btn-secondary">Cardapio</a></p>
+    </section>
+    <section id="renderer" class="col-10">
+      <router-outlet></router-outlet>
+      
+    </section>
+  </div>
+</main>

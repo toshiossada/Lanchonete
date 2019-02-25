@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -16,5 +17,8 @@ namespace Dextra.Lanchonete.Api.Models {
 
         [Required]
         public double Valor { get; set; }
+
+        public virtual ICollection<IngredienteAdicional> IngredienteAdicional { get; set; }
+        public virtual ICollection<PedidoLanche> PedidoLanche { get; set; }
     }
 }

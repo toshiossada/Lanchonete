@@ -13,6 +13,11 @@ namespace Dextra.Lanchonete.Api.Repository {
             _context.SaveChanges ();
         }
 
+        // public void Add (IngredienteAdicional ingredienteAdicional) {
+        //     _context.PedidosLanche.Add (IngredienteAdicional);
+        //     _context.SaveChanges ();
+        // }
+
         public PedidoLanche Find (int id) {
             return _context
                 .PedidosLanche

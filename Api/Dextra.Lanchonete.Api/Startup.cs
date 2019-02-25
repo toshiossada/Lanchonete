@@ -14,13 +14,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Dextra.Lanchonete.Api {
     public class Startup {
         public Startup (IConfiguration configuration) {
             Configuration = configuration;
-            
+
         }
 
         public IConfiguration Configuration { get; }
@@ -28,6 +29,11 @@ namespace Dextra.Lanchonete.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
+            services.AddCors ();
+            services.AddCors (options => {
+                options.AddPolicy ("AllowMyOrigin",
+                    builder => builder.WithOrigins ("*"));
+            });
 
             services.AddDbContext<MyAppContext> (options =>
                 options.UseSqlServer (Configuration.GetConnectionString ("DefaultConnection")));
@@ -44,7 +50,9 @@ namespace Dextra.Lanchonete.Api {
             services.AddTransient<ILancheBll, LancheBll> ();
             services.AddTransient<IPedidoLancheBll, PedidoLancheBll> ();
             #endregion
-
+            services.AddMvc ().AddJsonOptions (options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
             //Inicializando Swagger
             services.AddSwaggerGen (
                 c => {
@@ -72,6 +80,7 @@ namespace Dextra.Lanchonete.Api {
 
             app.UseHttpsRedirection ();
 
+            app.UseCors ("AllowMyOrigin");
             //Definindo Endpoint Swagger
             app.UseSwagger ();
             app.UseSwaggerUI (

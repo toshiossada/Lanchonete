@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Lanches</h5>
+      <table class="table table-hover table-bordered">
+        <caption>Lista de Ingredientes</caption>
+        <thead class="thead-dark">
+          <th>#</th>
+          <th>Descrição</th>
+          <th>Ingredientes</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lanche of lanches">
+            <td><input type="radio" (change)="selecionarLanche(lanche)"></td>
+            <td>{{lanche.descricao}}</td>
+            <td>
+              <label *ngFor="let ingrediente of lanche.lancheIngredientes">{{ingrediente.ingrediente.descricao}}                
+              </label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+  
+    </div>
+  </div>
+  

@@ -1,0 +1,6 @@
+<form (submit)="save()">
+  <app-lanches [lancheSelecionado]="lancheSelecionado"></app-lanches>
+  <app-ingredientes></app-ingredientes><br>
+  <label><strong>Total: </strong>R${{valor.toFixed(2)}}</label><br>
+  <input type="submit" value="Salvar" class="btn btn-primary">
+</form>

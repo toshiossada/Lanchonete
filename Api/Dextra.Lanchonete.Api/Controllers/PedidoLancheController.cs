@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System;
 using System.Collections.Generic;
 using Dextra.Lanchonete.Api.Models;
@@ -35,6 +36,8 @@ namespace Dextra.Lanchonete.Api.Controllers {
         {
             if(pedidoLanche == null) return BadRequest();
             pedidoLanche.ValorFinal = _pedidoLancheBll.CalcularPrecoLanche(pedidoLanche);
+
+
 
             _pedidoLancheBll.Add(pedidoLanche);
             

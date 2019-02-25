@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Dextra.Lanchonete.Api.Models {
     [Table ("IngredientesAdicionais")]
     public class IngredienteAdicional {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public int PedidoLancheId { get; set; }
 
@@ -13,7 +15,7 @@ namespace Dextra.Lanchonete.Api.Models {
         [Required]
         public int Quantidade { get; set; }
 
-        public virtual PedidoLanche PedidoLanche { get; set; }
-        public virtual Ingrediente Ingrediente { get; set; }
+        public PedidoLanche PedidoLanche { get; set; }
+        public Ingrediente Ingrediente { get; set; }
     }
 }

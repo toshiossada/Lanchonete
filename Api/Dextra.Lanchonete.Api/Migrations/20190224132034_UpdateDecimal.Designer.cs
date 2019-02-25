@@ -4,14 +4,16 @@ using Dextra.Lanchonete.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dextra.Lanchonete.Api.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20190224132034_UpdateDecimal")]
+    partial class UpdateDecimal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,19 +40,13 @@ namespace Dextra.Lanchonete.Api.Migrations
 
             modelBuilder.Entity("Dextra.Lanchonete.Api.Models.IngredienteAdicional", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("IngredienteId");
 
                     b.Property<int>("PedidoLancheId");
 
                     b.Property<int>("Quantidade");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("IngredienteId");
+                    b.HasKey("IngredienteId", "PedidoLancheId");
 
                     b.HasIndex("PedidoLancheId");
 
@@ -93,15 +89,11 @@ namespace Dextra.Lanchonete.Api.Migrations
 
                     b.Property<int>("IdLanche");
 
-                    b.Property<int?>("IngredienteId");
-
                     b.Property<int?>("LancheId");
 
                     b.Property<double>("ValorFinal");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IngredienteId");
 
                     b.HasIndex("LancheId");
 
@@ -111,7 +103,7 @@ namespace Dextra.Lanchonete.Api.Migrations
             modelBuilder.Entity("Dextra.Lanchonete.Api.Models.IngredienteAdicional", b =>
                 {
                     b.HasOne("Dextra.Lanchonete.Api.Models.Ingrediente", "Ingrediente")
-                        .WithMany("IngredienteAdicional")
+                        .WithMany()
                         .HasForeignKey("IngredienteId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -136,10 +128,6 @@ namespace Dextra.Lanchonete.Api.Migrations
 
             modelBuilder.Entity("Dextra.Lanchonete.Api.Models.PedidoLanche", b =>
                 {
-                    b.HasOne("Dextra.Lanchonete.Api.Models.Ingrediente")
-                        .WithMany("PedidoLanche")
-                        .HasForeignKey("IngredienteId");
-
                     b.HasOne("Dextra.Lanchonete.Api.Models.Lanche", "Lanche")
                         .WithMany()
                         .HasForeignKey("LancheId");

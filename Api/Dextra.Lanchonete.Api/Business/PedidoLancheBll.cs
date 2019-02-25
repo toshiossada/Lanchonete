@@ -16,6 +16,12 @@ namespace Dextra.Lanchonete.Api.Business {
         }
 
         public void Add (PedidoLanche pedidoLanche) {
+            foreach (var item in pedidoLanche.IngredientesAdicionais) {
+                item.Ingrediente = null;
+            }
+            //pedidoLanche.IngredientesAdicionais = null;
+            pedidoLanche.Lanche = null;
+
             _pedidoLancheRepository.Add (pedidoLanche);
         }
 
@@ -52,10 +58,9 @@ namespace Dextra.Lanchonete.Api.Business {
             }
 
             //A cada 3 Hambúrgueres de carne o cliente não paga um
-            valorFinal -= PromocaoCarne(lanche.LancheIngredientes, pedidoLanche.IngredientesAdicionais);
+            valorFinal -= PromocaoCarne (lanche.LancheIngredientes, pedidoLanche.IngredientesAdicionais);
             //A cada 3 Queijos o cliente não paga um
-            valorFinal -= PromocaoQueijo(lanche.LancheIngredientes, pedidoLanche.IngredientesAdicionais);
-
+            valorFinal -= PromocaoQueijo (lanche.LancheIngredientes, pedidoLanche.IngredientesAdicionais);
 
             return valorFinal;
         }
@@ -77,18 +82,18 @@ namespace Dextra.Lanchonete.Api.Business {
             var descCarne = "Hambúrguer de carne";
             var carne = _ingredienteBll.FindByDescription (descCarne);
 
-            var qtdCarne = ingredientesAdicionais.Count (r => r.Ingrediente.Id == carne.Id) + lancheIngredientes.Count (r => r.Ingrediente.Id == carne.Id);
+            var qtdCarne = ingredientesAdicionais.Where(r => r.Ingrediente.Id == carne.Id).Sum(r => r.Quantidade) + lancheIngredientes.Count (r => r.Ingrediente.Id == carne.Id);
             var desconto = carne.Valor * Math.Round (qtdCarne / 3.0);
 
             return desconto;
         }
 
         //A cada 3 porções de queijo o cliente só paga 2. Se o lanche tiver 6 porções, ocliente pagará 4. Assim por diante...
-        private double PromocaoQueijo(ICollection<LancheIngrediente> lancheIngredientes, ICollection<IngredienteAdicional> ingredientesAdicionais) {
+        private double PromocaoQueijo (ICollection<LancheIngrediente> lancheIngredientes, ICollection<IngredienteAdicional> ingredientesAdicionais) {
             var descQueijo = "Queijo";
-            var queijo = _ingredienteBll.FindByDescription(descQueijo);
+            var queijo = _ingredienteBll.FindByDescription (descQueijo);
 
-            var qtdQueijo = ingredientesAdicionais.Count(r => r.Ingrediente.Id == queijo.Id) + lancheIngredientes.Count (r => r.Ingrediente.Id == queijo.Id);
+            var qtdQueijo = ingredientesAdicionais.Where (r => r.Ingrediente.Id == queijo.Id).Sum(r => r.Quantidade)  + lancheIngredientes.Count (r => r.Ingrediente.Id == queijo.Id);
             var desconto = queijo.Valor * Math.Round (qtdQueijo / 3.0);
 
             return desconto;

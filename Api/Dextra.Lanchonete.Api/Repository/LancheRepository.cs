@@ -26,8 +26,8 @@ namespace Dextra.Lanchonete.Api.Repository
         {
             var result = _context
                             .Lanches
-                            .Include(t => t.LancheIngredientes)
-                            .Include("LancheIngredientes.Ingrediente")
+                             .Include(t => t.LancheIngredientes)
+                             .Include("LancheIngredientes.Ingrediente")
                             .ToList();
             return result;
         }

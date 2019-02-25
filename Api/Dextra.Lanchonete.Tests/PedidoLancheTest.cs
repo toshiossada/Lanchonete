@@ -149,7 +149,7 @@ namespace Dextra.Lanchonete.Tests
                         Ingrediente = new Ingrediente()
                         {
                             Id = 8,
-                            Descricao = "Hambúrguer de carne",
+                            Descricao = "Hambï¿½rguer de carne",
                             Valor = 3
                         }
                     }
@@ -158,7 +158,7 @@ namespace Dextra.Lanchonete.Tests
 
             _lancheBllMock.Setup(theObject => theObject.Find(dataPedidoLanche.Id)).Returns(dataLanche);
 
-            _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Hambúrguer de carne")).Returns(new Ingrediente() { Id = 8 });
+            _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Hambï¿½rguer de carne")).Returns(new Ingrediente() { Id = 8 });
             _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Queijo")).Returns(new Ingrediente() { Id = 10 });
             var valor = _pedidoLancheBll.CalcularPrecoLanche(dataPedidoLanche);
 
@@ -178,51 +178,7 @@ namespace Dextra.Lanchonete.Tests
                 {
                     new IngredienteAdicional()
                     {
-                        Ingrediente =  new Ingrediente()
-                        {
-                            Id = 10,
-                            Descricao = "Queijo",
-                            Valor = 0.40
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente =  new Ingrediente()
-                        {
-                            Id = 10,
-                            Descricao = "Queijo",
-                            Valor = 0.40
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente =  new Ingrediente()
-                        {
-                            Id = 10,
-                            Descricao = "Queijo",
-                            Valor = 0.40
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente =  new Ingrediente()
-                        {
-                            Id = 10,
-                            Descricao = "Queijo",
-                            Valor = 0.40
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente =  new Ingrediente()
-                        {
-                            Id = 10,
-                            Descricao = "Queijo",
-                            Valor = 0.40
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
+                        Quantidade = 6,
                         Ingrediente =  new Ingrediente()
                         {
                             Id = 10,
@@ -261,7 +217,7 @@ namespace Dextra.Lanchonete.Tests
 
             _lancheBllMock.Setup(theObject => theObject.Find(dataPedidoLanche.Id)).Returns(dataLanche);
 
-            _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Hambúrguer de carne")).Returns(new Ingrediente() { Id = 8, Valor = 3 });
+            _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Hambï¿½rguer de carne")).Returns(new Ingrediente() { Id = 8, Valor = 3 });
             _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Queijo")).Returns(new Ingrediente() { Id = 10, Valor = 0.4 });
             var valor = _pedidoLancheBll.CalcularPrecoLanche(dataPedidoLanche);
 
@@ -282,55 +238,11 @@ namespace Dextra.Lanchonete.Tests
                 {
                     new IngredienteAdicional()
                     {
+                        Quantidade = 6,
                         Ingrediente = new Ingrediente()
                         {
                             Id = 8,
-                            Descricao = "Hambúrguer de carne",
-                            Valor = 3
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente = new Ingrediente()
-                        {
-                            Id = 8,
-                            Descricao = "Hambúrguer de carne",
-                            Valor = 3
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente = new Ingrediente()
-                        {
-                            Id = 8,
-                            Descricao = "Hambúrguer de carne",
-                            Valor = 3
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente = new Ingrediente()
-                        {
-                            Id = 8,
-                            Descricao = "Hambúrguer de carne",
-                            Valor = 3
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente = new Ingrediente()
-                        {
-                            Id = 8,
-                            Descricao = "Hambúrguer de carne",
-                            Valor = 3
-                        }
-                    },
-                    new IngredienteAdicional()
-                    {
-                        Ingrediente = new Ingrediente()
-                        {
-                            Id = 8,
-                            Descricao = "Hambúrguer de carne",
+                            Descricao = "Hambï¿½rguer de carne",
                             Valor = 3
                         }
                     }
@@ -347,7 +259,7 @@ namespace Dextra.Lanchonete.Tests
                         Ingrediente = new Ingrediente()
                         {
                             Id = 8,
-                            Descricao = "Hambúrguer de carne",
+                            Descricao = "Hambï¿½rguer de carne",
                             Valor = 3
                         }
                     },
@@ -365,7 +277,7 @@ namespace Dextra.Lanchonete.Tests
 
             _lancheBllMock.Setup(theObject => theObject.Find(dataPedidoLanche.Id)).Returns(dataLanche);
 
-            _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Hambúrguer de carne")).Returns(new Ingrediente() { Id = 8, Valor = 3 });
+            _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Hambï¿½rguer de carne")).Returns(new Ingrediente() { Id = 8, Valor = 3 });
             _ingredienteBllMock.Setup(theObject => theObject.FindByDescription("Queijo")).Returns(new Ingrediente() { Id = 10, Valor = 0.4 });
             var valor = _pedidoLancheBll.CalcularPrecoLanche(dataPedidoLanche);
 

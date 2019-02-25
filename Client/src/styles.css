@@ -1,0 +1,26 @@
+html,
+body,
+app-root {
+  height: 100%;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  flex: 1;
+}
+
+#content>.row {
+  height: 100%;
+}
+
+body {
+  background-color: rgb(236, 240, 241);
+}
+
+#nav, #renderer{
+    padding-top: 15px;
+}

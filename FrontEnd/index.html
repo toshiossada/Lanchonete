@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Client</title>
+    <base href="/">
+	<script type="text/javascript" language="javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<script>
+	let lstIngredientes = [];
+	let lstLanches = [];
+
+	$(function() {
+	  getIngredites();
+	  getLanches();
+	  $("#btnPedir").click(function(){
+		postLanche();
+		return false;
+	  });
+	});
+
+	function getIngredites(){		
+		
+		$.get( "https://localhost:5001/api/v1/Ingredientes", function( data ) {
+			var html = "";
+			
+			$.each(data, function(i, item) {
+				lstIngredientes.push(item);
+				html += '<tr id="ingrediente' + item.id + '">'
+				html += '<td><input type="checkbox" value="' + i + '"></td>';
+				html += '<td>' + item.descricao + '</td>'
+				html += '<td>R$' + item.valor.toFixed(2) + '</td>'
+				html += '<td><input id="quantidade' + i + '" type="text"></td>';
+				html += '</tr>';
+			});
+			
+			$("#ingredientes > tbody").html(html)
+		});		
+	}
+	
+	function getLanches(){					
+		$.get( "https://localhost:5001/api/v1/Lanches", function( data ) {
+			let html = "";
+			$.each(data, function(i, item) {
+				let valor = 0
+				let ingredientes = "";
+				lstLanches.push(item);
+				$.each(item.lancheIngredientes, function(j, ingrediente) {					
+					valor += ingrediente.ingrediente.valor;
+					ingredientes  += ((j == 0)? "" : ", ") + ingrediente.ingrediente.descricao;
+				});
+				html += '<tr id="ingrediente' + item.id + '">';
+				html += '<td><input type="radio" name="lanche" value=' + i + '></td>';
+				html += '<td>' + item.descricao + '</td>'
+				html += '<td>' + ingredientes + '(R$' + valor.toFixed(2) + ')</td>'
+				html += '</tr>';
+			});
+			
+			$("#lanches > tbody").html(html)
+		});		
+	}	
+	
+	function postLanche(){				
+
+		var request = $.ajax({
+			url: "https://localhost:5001/api/v1/PedidoLanche",
+			method: "POST",
+			headers: {'X-Requested-With': 'XMLHttpRequest'},
+			crossDomain: true,			
+			contentType: 'application/json',
+			data: montarRequest() ,
+			dataType: "html",
+			success: function(data) {
+				$("#preco").text("R$" + data.valorFinal.toFixed(2))
+			}
+		});
+		 
+		 
+		request.fail(function( jqXHR, textStatus ) {
+			alert( "Request failed: " + textStatus );
+		});	
+		
+
+	}		
+	
+	function montarRequest(){
+		let lancheSelecionado = lstLanches[$("input[name='lanche']:checked").val()];
+		var lanche = {
+			idLanche: lancheSelecionado.id,
+			LancheId: lancheSelecionado.id,
+			lanche: lancheSelecionado,
+			ingredientesAdicionais: ingredientesAdicionais()
+		}
+		
+		return lanche;
+	}
+	
+	function ingredientesAdicionais(){
+		let result = [];
+		$("input[type='checkbox']:checked").each(function () {
+			result.push(
+			{
+				IngredienteId: lstIngredientes[$(this).val()].id,
+				quantidade: $("#quantidade" + $(this).val()).val(),
+				ingrediente: lstIngredientes[$(this).val()]
+			});
+		});	
+		
+		return result;
+	}
+</script>
+<body>
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="nav-brand h1">
+               Lanchonete Dextra
+            </span>
+        </nav>
+
+
+    </header>
+    <main class="container-fluid" id="content">
+        <div class="row">
+            <section id="nav" class="col-2 bg-dark">
+                <p class="display-6 text-light">
+                    <small>
+                        Menu
+                    </small>
+                </p>
+                <p><a href="#" class="btn btn-secondary">Cardapio</a></p>
+            </section>
+            <section id="renderer" class="col-10">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cardapio</h5>
+                        <table id="lanches" class="table table-hover table-bordered">
+                            <caption>Lista de Lanches</caption>
+                            <thead class="thead-dark">
+                                <th>#</th>
+                                <th>Descrição</th>
+                                <th>Ingredientes</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>						
+						
+                        <table id="ingredientes" class="table table-hover table-bordered">
+                            <caption>Adicionar Ingredientes</caption>
+                            <thead class="thead-dark">
+                                <th>#</th>
+                                <th>Descrição</th>
+                                <th>Preço</th>
+                                <th>Quantidade</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+						
+						<label id="preco">R$00.00</label><br>
+						<input type="submit" id="btnPedir" value="Pedir" class="btn btn-primary">
+						
+                    </div>
+                </div>
+
+
+            </section>
+        </div>
+    </main>
+
+</body>
+
+</html>
