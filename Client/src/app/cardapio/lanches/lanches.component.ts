@@ -8,7 +8,8 @@ import { AppHttpService } from '../../app-http.service';
 })
 export class LanchesComponent implements OnInit {
   public lanches: any = [];
-  @Input('lancheSelecionado') lancheSelecionado: any;
+  // tslint:disable-next-line:no-input-rename
+  @Input('lancheSelecionado') lancheSelecionado: any = {};
   constructor(private service: AppHttpService) { }
 
   ngOnInit() {

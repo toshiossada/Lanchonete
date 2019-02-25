@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppHttpService } from '../../app-http.service';
 
 
@@ -9,7 +9,7 @@ import { AppHttpService } from '../../app-http.service';
 })
 export class IngredientesComponent implements OnInit {
   public ingredientes: any = [];
-  public ingredientesSelecionados: any = [];
+  @Input("ingredientesSelecionados") ingredientesSelecionados: any = [];
 
   constructor(private service: AppHttpService) { }
 

@@ -12,7 +12,7 @@ import { AppHttpService } from '../app-http.service';
 export class CardapioComponent implements OnInit {
   public valor = 0;
   lancheSelecionado: any = {};
-  ingrediente: any = [];
+  ingredientesSelecionados: any = [];
   public pedidoLanche: PedidoLanche;
   ingredienteAdicional = new IngredientesAdicional();
   constructor(private service: AppHttpService) { }
@@ -29,7 +29,7 @@ export class CardapioComponent implements OnInit {
     this.pedidoLanche.ingredientesAdicionais = new Array<IngredientesAdicional>();
 
 
-    for (let item of this.ingrediente) {
+    for (const item of this.ingredientesSelecionados) {
       this.ingredienteAdicional.ingredienteId = 0;
       this.ingredienteAdicional.ingrediente = item;
       this.ingredienteAdicional.quantidade = 0;

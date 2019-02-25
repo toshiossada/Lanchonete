@@ -10,7 +10,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let lanche of lanches">
-            <td><input type="radio" (change)="selecionarLanche(lanche)"></td>
+            <td><input type="radio" (change)="selecionarLanche(lanche)" name="lanches"></td>
             <td>{{lanche.descricao}}</td>
             <td>
               <label *ngFor="let ingrediente of lanche.lancheIngredientes">{{ingrediente.ingrediente.descricao}}                
