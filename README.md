@@ -16,5 +16,5 @@ Após isso atualizar o banco de dados executando o comando
 
 Os testes unitarios foram feitos utilizando o XUnit e a biblioteca Moq para conseguir Mocar os resultados, para executar os testes execute o comando no dotnet Cli: 'dotnet test'
 
-Para executar o Front-end ir para a pasta /Client, fazer download das dependencias 'nom install' e com o Angular CLI intalado executar o ng server.
+Para executar o Front-end ir para a pasta /Client, fazer download das dependencias 'npm install' e com o Angular CLI intalado executar o ng server.
 Tambem foi utilizado DI no projeto angular para acessar os serviços
