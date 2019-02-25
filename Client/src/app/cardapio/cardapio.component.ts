@@ -21,9 +21,21 @@ export class CardapioComponent implements OnInit {
 
   changeLancheSelecionado(lanche: any) {
     this.lancheSelecionado = lanche;
+    this.service
+      .build('PedidoLanche/ValorFinal')
+      .create(this.montaRequest())
+      .subscribe((data) => {
+        this.valor = data['valorFinal'];
+      });
   }
   changeIngredienteSelecionado(ingrediente: any) {
     this.ingredientesSelecionados = ingrediente;
+    this.service
+      .build('PedidoLanche/ValorFinal')
+      .create(this.montaRequest())
+      .subscribe((data) => {
+        this.valor = data['valorFinal'];
+      });
   }
 
   save() {

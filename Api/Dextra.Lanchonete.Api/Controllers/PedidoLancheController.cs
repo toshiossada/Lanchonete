@@ -33,6 +33,18 @@ namespace Dextra.Lanchonete.Api.Controllers {
             return new ObjectResult(retorno);
         }
 
+        
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult ValorFinal([FromBody]PedidoLanche pedidoLanche)
+        {
+            if(pedidoLanche == null) return BadRequest();
+            pedidoLanche.ValorFinal = _pedidoLancheBll.CalcularPrecoLanche(pedidoLanche);
+
+            return CreatedAtRoute("GetPedidoLanche", new { id = pedidoLanche.Id}, pedidoLanche);
+        }
+
+
         [HttpPost]
         public IActionResult Create([FromBody]PedidoLanche pedidoLanche)
         {

@@ -16,7 +16,7 @@ export class IngredientesComponent implements OnInit {
   constructor(private service: AppHttpService) { }
 
   ngOnInit() {
-    this.service.build('Ingredientes') 
+    this.service.build('Ingredientes')
       .list()
       .subscribe((data) => {
         this.updateData(data);
@@ -48,6 +48,9 @@ export class IngredientesComponent implements OnInit {
       this.ingredientesSelecionados.splice(index, 1);
     }
 
+    this.ingredientesSelecionadosE.emit(this.ingredientesSelecionados);
+  }
+  quantidadeOnChange() {
     this.ingredientesSelecionadosE.emit(this.ingredientesSelecionados);
   }
 

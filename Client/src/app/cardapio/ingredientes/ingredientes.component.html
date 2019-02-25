@@ -14,7 +14,7 @@
           <td><input type="checkbox"  (change)="checkboxHandle($event, ingrediente)"></td>
           <td>{{ingrediente.descricao}}</td>
           <td>{{ingrediente.valor}}</td>
-          <td><input type="number" class="form-control" placeholde="Quantidade" ng-model="ingrediente.quantidade" [(ngModel)]="ingrediente.quantidade" ></td>
+          <td><input type="number" class="form-control" placeholde="Quantidade" ng-model="ingrediente.quantidade" (change)="quantidadeOnChange()" [(ngModel)]="ingrediente.quantidade" ></td>
         </tr>
       </tbody>
     </table>
