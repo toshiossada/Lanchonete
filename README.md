@@ -19,3 +19,6 @@ Os testes unitarios foram feitos utilizando o XUnit e a biblioteca Moq para cons
 
 Para executar o Front-end ir para a pasta /Client, fazer download das dependencias 'npm install' e com o Angular CLI intalado executar o ng server.
 Tambem foi utilizado DI no projeto angular para acessar os serviços
+
+
+Fiz também uma versão utilizando JQuery consumindo a API no .NetCore, esta em /FrontEnd/index.html
